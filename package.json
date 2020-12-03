@@ -1,0 +1,24 @@
+{
+  "name": "matchmaker",
+  "version": "1.0.0",
+  "description": "A super simple pattern matching library for Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haideralsh/pattern-matching.git"
+  },
+  "keywords": [
+    "pattern",
+    "matching",
+    "functional"
+  ],
+  "author": "halshamma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haideralsh/pattern-matching/issues"
+  },
+  "homepage": "https://github.com/haideralsh/pattern-matching#readme"
+}
