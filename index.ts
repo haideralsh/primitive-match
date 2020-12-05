@@ -1,22 +1,22 @@
 const WILDCARD_VALUE = '__matchmaker__wildcard__value__'
 
-type PositiveMatchResult = {
+type PositiveMatch = {
     matches: true
     result: any
 }
 
-type NegativeMatchResult = {
+type NegativeMatch = {
     matches: false
 }
 
-type MatchResult = PositiveMatchResult | NegativeMatchResult
+type MatchResult = PositiveMatch | NegativeMatch
 
-const match = (...values: any[]) => (...whens: Function[]) =>
+export const match = (...values: any[]) => (...whens: Function[]) =>
     whens
         .map((when) => when(values))
         .find(({ matches, result }) => matches && result)?.result
 
-const when = (pattern: any[], result: any): Function => (
+export const when = (pattern: any[], result: any): Function => (
     values: any[]
 ): MatchResult => {
     if (pattern.length != values.length) return { matches: false }
@@ -29,7 +29,7 @@ const when = (pattern: any[], result: any): Function => (
     return { matches: true, result }
 }
 
-const _ = WILDCARD_VALUE
+export const _ = WILDCARD_VALUE
 
 const color = (r: number, g: number, b: number, a: number) =>
     match(r, g, b, a)(
