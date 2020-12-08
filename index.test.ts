@@ -46,17 +46,17 @@ describe('match function', () => {
 
 describe('when function', () => {
     // Behaviour
-    test("returns a { match: false } when the pattern array's length is not the same as the values array's length", () => {
+    test("returns a { matches: false } when the pattern's array's length is not the same as the values' array's length", () => {
         expect(when([1, 2, 3, 4], 'result')([])).toEqual({ matches: false })
     })
 
-    test('returns a { match: false } when any value is does not match', () => {
+    test('returns a { matches: false } when any value does not match', () => {
         expect(when([1, 2, 3, 4], 'result')([1, 2, 4, 3])).toEqual({
             matches: false,
         })
     })
 
-    test('returns a { match: true } with the result if all values match', () => {
+    test("returns a { match: true, result: RESULT } if all pattern's values match", () => {
         expect(when([1, 2, 3, 4], 'result')([1, 2, 3, 4])).toEqual({
             matches: true,
             result: 'result',
@@ -71,14 +71,14 @@ describe('when function', () => {
     })
 
     // Support for primitives
-    test('supports numbers matching', () => {
+    test('supports number matching', () => {
         expect(when([1, 2, 3], 'result')([1, 2, 3])).toEqual({
             matches: true,
             result: 'result',
         })
     })
 
-    test('supports strings matching', () => {
+    test('supports string matching', () => {
         expect(
             when(['foo', 'bar', 'baz'], 'result')(['foo', 'bar', 'baz'])
         ).toEqual({
