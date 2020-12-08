@@ -11,12 +11,12 @@ type NegativeMatch = {
 
 type MatchResult = PositiveMatch | NegativeMatch
 
-export const match = (...values: any[]) => (...whens: Function[]) =>
+const match = (...values: any[]) => (...whens: Function[]) =>
     whens
         .map((when) => when(values))
         .find(({ matches, result }) => matches && result)?.result
 
-export const when = (pattern: any[], result: any): Function => (
+const when = (pattern: any[], result: any): Function => (
     values: any[]
 ): MatchResult => {
     if (pattern.length != values.length) return { matches: false }
@@ -29,4 +29,6 @@ export const when = (pattern: any[], result: any): Function => (
     return { matches: true, result }
 }
 
-export const _ = WILDCARD_VALUE
+const _ = WILDCARD_VALUE
+
+export { match, when, _ }
