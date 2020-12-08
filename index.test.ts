@@ -1,5 +1,49 @@
 import { match, when, _ } from '.'
 
+describe('match function', () => {
+    test('calls all argument functions and passes them its values as an array', () => {
+        const a = 'a',
+            b = 'b',
+            c = 'c'
+
+        const funcA = (arr: any[]) => {
+            expect(arr).toEqual([a, b, c])
+            return { matches: false }
+        }
+
+        const funcB = (arr: any[]) => {
+            expect(arr).toEqual([a, b, c])
+            return { matches: false }
+        }
+
+        match(a, b, c)(funcA, funcB)
+    })
+
+    test('returns result when there is a match', () => {
+        const a = 'a',
+            b = 'b',
+            c = 'c'
+
+        const func = (_: any[]) => {
+            return { matches: true, result: 'result' }
+        }
+
+        expect(match(a, b, c)(func)).toBe('result')
+    })
+
+    test('returns `undefined` when there is no match', () => {
+        const a = 'a',
+            b = 'b',
+            c = 'c'
+
+        const func = (_: any[]) => {
+            return { matches: false }
+        }
+
+        expect(match(a, b, c)(func)).toBe(undefined)
+    })
+})
+
 describe('when function', () => {
     // Behaviour
     test("returns a { match: false } when the pattern array's length is not the same as the values array's length", () => {
