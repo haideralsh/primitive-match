@@ -1,4 +1,4 @@
-import { match, when, _ } from '.'
+import { match, when, _ } from '../src'
 
 describe('match function', () => {
     test('calls all argument functions and passes them its values as an array', () => {
