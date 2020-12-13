@@ -29,6 +29,9 @@ jobs:
       - name: compile TypeScript
         run: npm run build
         
+      - name: List all files
+        run: ls 
+        
       - name: Prettify code
         uses: creyD/prettier_action@v3.1
         with:
