@@ -28,14 +28,14 @@ jobs:
       # Runs a single command using the runners shell
       - name: compile TypeScript
         run: npm run build
-        
-      - name: List all files
-        run: ls 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Prettify code
         uses: creyD/prettier_action@v3.1
         with:
           # This part is also where you can pass other options, for example:
-          prettier_options: --write **/*.ts
+          prettier_options: --write src/*.ts
+          commit_message: Format code
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
