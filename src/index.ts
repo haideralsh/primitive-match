@@ -10,7 +10,8 @@ type PositiveMatch = {
     result: any
 }
 
-type NegativeMatch = {
+type NegativeMatch = 
+{
     matches: false
 }
 
