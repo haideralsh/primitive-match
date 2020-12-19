@@ -1,5 +1,5 @@
 {
-    "name": "matchmaker",
+    "name": "primitive-match",
     "version": "1.0.0",
     "description": "A super simple pattern matching library for Javascript",
     "main": "lib/index.js",
