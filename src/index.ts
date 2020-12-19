@@ -3,7 +3,7 @@
  * not exported, it serves as the only source of the wildcard value. Other
  * constants point to its value are exported. @see _
  */
-const WILDCARD_VALUE = '__matchmaker__wildcard__value__'
+const WILDCARD_VALUE = '__primitive__match__wildcard__value__'
 
 type PositiveMatch = {
     matches: true
