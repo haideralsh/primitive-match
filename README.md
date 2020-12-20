@@ -2,7 +2,7 @@
 
 # primitive-match
 
-> A 1 KB pattern matching library for JavaScript with a simple API
+> A pattern matching library for JavaScript with a simple API
 
 ## Install
 
