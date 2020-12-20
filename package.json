@@ -1,7 +1,7 @@
 {
     "name": "primitive-match",
     "version": "1.0.0",
-    "description": "A 1 KB pattern matching library for JavaScript with a simple API",
+    "description": "A pattern matching library for JavaScript with a simple API",
     "main": "lib/index.js",
     "scripts": {
         "build": "tsc",
