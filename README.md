@@ -31,9 +31,9 @@ Accepts any number of JavaScript primitives of any type. Returns a function that
 
 #### `when(any[], string)`
 
-Accepts an array of the same length as the values provided to the parent `match` function and a result which will be returned as the in case of a match. It
+Accepts an array of the same length as the values provided to the parent `match` function and a result which will be returned in case of a match. It
 performs the pattern matching using reference type and value equality. There will be no match if the number of values given in the array it accepts as the first argument is not the same as the number of values given to its parent
-`match` function, or if none of the values not match their corresponding pattern.
+`match` function, or if none of the values do not match their corresponding pattern.
 
 #### `_`
 
