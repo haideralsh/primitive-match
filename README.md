@@ -29,7 +29,7 @@ const color = match(r, g, b, a)(
 
 Accepts any number of JavaScript primitives of any type. Returns a function that accepts any number of `when` functions.
 
-#### `when(any[], string)`
+#### `when(pattern: any[], result: any)`
 
 Accepts an array of the same length as the values provided to the parent `match` function and a result which will be returned in case of a match. It
 performs the pattern matching using reference type and value equality. There will be no match if the number of values given in the array it accepts as the first argument is not the same as the number of values given to its parent
