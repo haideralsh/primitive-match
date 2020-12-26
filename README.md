@@ -23,6 +23,49 @@ const color = match(r, g, b, a)(
 )
 ```
 
+## Example
+
+Lets say we need to perform some logic to determine the message we need show to our
+user. This logic depends on multiple pieces of the user's information.
+
+```js
+const { country, tier, loggedIn } = getUserInfo()
+
+let msg
+
+if (loggedIn === false) {
+    msg = 'Please log in to continue.'
+} else if (country === 'US' || (country === 'Canada' && tier === 'premium')) {
+    msg = 'Enjoy the show!'
+} else if (country === 'Canada') {
+    msg = 'This show is only for premium members.'
+} else {
+    msg = 'This show is unavailable in your country.'
+}
+```
+
+In order to understand which message will appear in each different scenario, we
+would need to follow and understand the different conditions in each `if`
+statement. The poor readability of the code makes it very error prone if we
+would need to add or modify a condition.
+
+`primitive-match` makes value based pattern-matching code easier to read and
+understand. We can turn the above example to this:
+
+```js
+import { match, when, _ } from 'primitive-match'
+
+const { country, tier, loggedIn } = getUserInfo()
+
+const msg = match(country, tier, loggedIn)(
+    when([_, _, false], 'Please log in to continue.'),
+    when(['US', _, true], 'Enjoy the show!'),
+    when(['Canada', 'premium', true], 'Enjoy the show!'),
+    when(['Canada', 'free', true], 'This show is only for premium members.')
+    when([_, _, true], 'This show is unavailable in your country.')
+)
+```
+
 ## API
 
 #### `match(...values: any[])`
