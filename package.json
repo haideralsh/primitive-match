@@ -21,7 +21,7 @@
         "functional"
     ],
     "author": "halshamma",
-    "license": "ISC",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/haideralsh/pattern-matching/issues"
     },
