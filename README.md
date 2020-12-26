@@ -61,7 +61,7 @@ const msg = match(country, tier, loggedIn)(
     when([_, _, false], 'Please log in to continue.'),
     when(['US', _, true], 'Enjoy the show!'),
     when(['Canada', 'premium', true], 'Enjoy the show!'),
-    when(['Canada', 'free', true], 'This show is only for premium members.')
+    when(['Canada', 'free', true], 'This show is only for premium members.'),
     when([_, _, true], 'This show is unavailable in your country.')
 )
 ```
