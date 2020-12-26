@@ -85,7 +85,7 @@ A string with the value of `__primitive__match__wildcard__value__` that serves a
 If `_` conflicts with another library import such as `lodash` or `underscore`, then you can alias it when importing it:
 
 ```js
-import { match, when, _ as wildCardMatcher } from 'primitive-match'
+import { match, when, _ as anything } from 'primitive-match'
 
-match(someValue, anotherValue)(when(['value', wildCardMatcher], 'result'))
+match(someValue, anotherValue)(when(['value', anything], 'result'))
 ```
