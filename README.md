@@ -26,7 +26,7 @@ const color = match(r, g, b, a)(
 #### Example
 
 Lets say we need to perform some logic to determine the message we need show to our
-user. This logic depends on multiple pieces of the user's information.
+user. This logic depends on multiple pieces of the user's information:
 
 ```js
 const { country, tier, loggedIn } = getUserInfo()
