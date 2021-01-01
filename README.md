@@ -47,7 +47,7 @@ if (loggedIn === false) {
 In order to understand which message will appear in each different scenario, we
 need to follow and understand the different conditions in each `if`
 statement. The poor readability of the code makes it very error prone if we
-would need to add or modify a condition.
+have to add or modify a condition.
 
 `primitive-match` makes value based pattern-matching code easier to read and
 understand. We can turn the above example to this:
