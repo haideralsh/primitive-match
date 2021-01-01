@@ -25,7 +25,7 @@ type MatchResult = PositiveMatch | NegativeMatch
  * and returns a function that accepts any number of functions that have a
  * return type of {@link MatchResult}
  */
-const match = (...values: any[]) => (...whens: Function[]) =>
+const match = (...values: ReadonlyArray<any>) => (...whens: Function[]) =>
     whens
         .map((when) => when(values))
         .find(({ matches, result }) => matches && result)?.result
@@ -41,8 +41,8 @@ const match = (...values: any[]) => (...whens: Function[]) =>
  * {@link match} function is not the same as the number of patterns it is given,
  * or if any of the values do not match their corresponding pattern value.
  */
-const when = (pattern: any[], result: any): Function => (
-    values: any[]
+const when = (pattern: ReadonlyArray<any>, result: any): Function => (
+    values: ReadonlyArray<any>
 ): MatchResult => {
     if (pattern.length != values.length) return { matches: false }
 
