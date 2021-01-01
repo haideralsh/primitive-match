@@ -3,9 +3,9 @@
     "version": "1.0.2",
     "description": "A pattern matching library for JavaScript with a simple API",
     "files": [
-        "lib"
+        "dist"
     ],
-    "main": "lib/index.js",
+    "main": "dist/index.js",
     "scripts": {
         "build": "tsc",
         "fmt": "prettier --write .",
