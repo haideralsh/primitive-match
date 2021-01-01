@@ -26,9 +26,6 @@
         "url": "https://github.com/haideralsh/pattern-matching/issues"
     },
     "homepage": "https://github.com/haideralsh/pattern-matching#readme",
-    "dependencies": {
-        "@types/node": "^14.14.10"
-    },
     "devDependencies": {
         "@types/jest": "^26.0.16",
         "jest": "^26.6.3",
