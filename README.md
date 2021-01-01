@@ -2,7 +2,7 @@
 
 # primitive-match
 
-> A pattern matching library for JavaScript with a simple API
+> A zero-dependency pattern matching library for JavaScript with a simple API
 
 ## Install
 
@@ -25,8 +25,8 @@ const color = match(r, g, b, a)(
 
 #### Example
 
-Lets say we need to perform some logic to determine the message we need show to our
-user. This logic depends on multiple pieces of the user's information:
+Lets say we need to perform some logic to determine the message we need show our
+user. This logic depends on multiple pieces of information:
 
 ```js
 const { country, tier, loggedIn } = getUserInfo()
@@ -45,7 +45,7 @@ if (loggedIn === false) {
 ```
 
 In order to understand which message will appear in each different scenario, we
-would need to follow and understand the different conditions in each `if`
+need to follow and understand the different conditions in each `if`
 statement. The poor readability of the code makes it very error prone if we
 would need to add or modify a condition.
 
@@ -70,22 +70,31 @@ const msg = match(country, tier, loggedIn)(
 
 #### `match(...values: any[])`
 
-Accepts any number of JavaScript primitives of any type. Returns a function that accepts any number of `when` functions.
+Accepts any number of JavaScript primitives of any type. Returns a function that
+accepts any number of `when` functions.
 
 #### `when(pattern: any[], result: any)`
 
-Accepts an array of the same length as the values provided to the parent `match` function and a result which will be returned in case of a match. It
-performs the pattern matching using reference type and value equality. There will be no match if the number of values given to its pattern array is not the same as the number of values given to its parent
-`match` function, or if none of the values match their corresponding pattern.
+Accepts an array of the same length as the values provided to the parent `match`
+function and a result which will be returned in case of a match. It performs
+the pattern matching using reference type and value equality. There will be no
+match if the number of values given to its pattern array is not the same as the
+number of values given to its parent `match` function, or if none of the values
+match their corresponding pattern.
 
 #### `_`
 
-A string with the value of `__primitive__match__wildcard__value__` that serves as the wild card matching operator.
+A string with the value of `__primitive__match__wildcard__value__` that serves
+as the wild card matching operator.
 
-If `_` conflicts with another library import such as `lodash` or `underscore`, then you can alias it when importing it:
+If `_` conflicts with another library import such as `lodash` or `underscore`,
+then you can alias it when importing it:
 
 ```js
 import { match, when, _ as anything } from 'primitive-match'
 
-match(someValue, anotherValue)(when(['value', anything], 'result'))
+// prettier-ignore
+const result = match(someValue, anotherValue)(
+    when(['value', anything], 'result')
+)
 ```
