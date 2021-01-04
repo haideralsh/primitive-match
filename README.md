@@ -45,12 +45,12 @@ if (loggedIn === false) {
 ```
 
 In order to understand which message will appear in each different scenario, we
-need to follow and understand the different conditions in each `if`
-statement. The poor readability of the code makes it very error prone if we
-have to add or modify a condition.
+need to follow and understand the different conditions in each `if` statement.
+The poor code readability makes it very error prone if we have to add or modify
+a condition.
 
-`primitive-match` makes value based pattern-matching code easier to read and
-understand. We can turn the above example to this:
+`primitive-match` makes value based comparison easier to read and understand. We
+can turn the above example to this:
 
 ```js
 import { match, when, _ } from 'primitive-match'
@@ -82,6 +82,21 @@ match if the number of values given to its pattern array is not the same as the
 number of values given to its parent `match` function, or if none of the values
 match their corresponding pattern.
 
+#### `either(...values: any[])`
+
+Accepts any number of JavaScript primitives of any type. Can be passed as an
+argument to the `pattern` array of `when`. There will be a match if any of the
+values passed to `either` matches its corresponding `match` value.
+
+```js
+import { match, when, either, _ } from 'primitive-match'
+
+const number = getNumber()
+
+const result = match(number)(
+    when([either(1, 2, 'three')], 'Found 1, 2, or "three"!')
+)
+```
 #### `_`
 
 A string with the value of `__primitive__match__wildcard__value__` that serves

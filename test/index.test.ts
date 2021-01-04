@@ -1,4 +1,4 @@
-import { match, when, _ } from '../src'
+import { either, match, when, _ } from '../src'
 
 describe('match function', () => {
     it('calls all argument functions and passes them its values as an array', () => {
@@ -70,6 +70,19 @@ describe('when function', () => {
         })
     })
 
+    // Support either
+    it('returns a positive match when any of the values match', () => {
+        expect(
+            when(
+                [{ operator: 'either', elements: [1, 2] }, 2, 3],
+                'result'
+            )([1, 2, 3])
+        ).toEqual({
+            matches: true,
+            result: 'result',
+        })
+    })
+
     // Support for primitives
     it('supports number matching', () => {
         expect(when([1, 2, 3], 'result')([1, 2, 3])).toEqual({
@@ -132,5 +145,14 @@ describe('when function', () => {
 describe('wildcard matcher `_`', () => {
     it('is a wildcard matcher', () => {
         expect(match('result')(when([_], 'result'))).toBe('result')
+    })
+})
+
+describe('either function', () => {
+    it('returns an object with the operator `either` and the elements', () => {
+        expect(either(1, 'foo')).toEqual({
+            elements: [1, 'foo'],
+            operator: 'either',
+        })
     })
 })
