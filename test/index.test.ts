@@ -1,4 +1,4 @@
-import { either, match, when, _ } from '../src'
+import { either, neither, match, when, _ } from '../src'
 
 describe('match function', () => {
     it('calls all argument functions and passes them its values as an array', () => {
@@ -71,10 +71,22 @@ describe('when function', () => {
     })
 
     // Support either
-    it('returns a positive match when any of the values match', () => {
+    it('returns a { match: true, result: RESULT } when any of the ELEMENTS in { operator: "either", elements: [ELEMENTS] } match', () => {
         expect(
             when(
                 [{ operator: 'either', elements: [1, 2] }, 2, 3],
+                'result'
+            )([1, 2, 3])
+        ).toEqual({
+            matches: true,
+            result: 'result',
+        })
+    })
+
+    it('returns a { match: true, result: RESULT } when none of the ELEMENTS in { operator: "neither", elements: [ELEMENTS] } match', () => {
+        expect(
+            when(
+                [{ operator: 'neither', elements: [3, 4] }, 2, 3],
                 'result'
             )([1, 2, 3])
         ).toEqual({
@@ -151,8 +163,17 @@ describe('wildcard matcher `_`', () => {
 describe('either function', () => {
     it('returns an object with the operator `either` and the elements', () => {
         expect(either(1, 'foo')).toEqual({
-            elements: [1, 'foo'],
             operator: 'either',
+            elements: [1, 'foo'],
+        })
+    })
+})
+
+describe('neither function', () => {
+    it('returns an object with the operator `neither` and the elements', () => {
+        expect(neither(1, 'foo')).toEqual({
+            operator: 'neither',
+            elements: [1, 'foo'],
         })
     })
 })

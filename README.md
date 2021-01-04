@@ -97,6 +97,26 @@ const result = match(number)(
     when([either(1, 2, 'three')], 'Found 1, 2, or "three"!')
 )
 ```
+
+#### `neither(...values: any[])`
+
+Accepts any number of JavaScript primitives of any type. Can be passed as an
+argument to the `pattern` array of `when`. There will be a match if none of the
+values passed to it match their corresponding `match` value.
+
+```js
+import { match, when, neither, _ } from 'primitive-match'
+
+const character = getCharacter()
+
+const result = match(character)(
+    when(
+        [neither('A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u')],
+        `${character} is not a vowel!`
+    )
+)
+```
+
 #### `_`
 
 A string with the value of `__primitive__match__wildcard__value__` that serves

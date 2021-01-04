@@ -5,7 +5,7 @@
  */
 const WILDCARD_VALUE = '__primitive__match__wildcard__value__'
 
-type Operator = 'either'
+type Operator = 'either' | 'neither'
 
 type Operation = {
     operator: Operator
@@ -15,10 +15,16 @@ type Operation = {
 const operation = (
     operator: Operation['operator'],
     elements: ReadonlyArray<any>
-): Operation => ({ operator, elements })
+): Operation => ({
+    operator,
+    elements,
+})
 
 const either = (...elements: ReadonlyArray<any>) =>
     operation('either', elements)
+
+const neither = (...elements: ReadonlyArray<any>) =>
+    operation('neither', elements)
 
 type PositiveMatch = {
     matches: true
@@ -70,6 +76,10 @@ const when = (pattern: ReadonlyArray<any>, result: any): Function => (
                 case 'either':
                     if (elements.some((elem) => elem === values[i])) continue
                     else return { matches: false }
+
+                case 'neither':
+                    if (elements.every((elem) => elem !== values[i])) continue
+                    else return { matches: false }
             }
         }
 
@@ -85,4 +95,4 @@ const when = (pattern: ReadonlyArray<any>, result: any): Function => (
  */
 const _ = WILDCARD_VALUE
 
-export { match, when, either, _ }
+export { match, when, neither, either, _ }
