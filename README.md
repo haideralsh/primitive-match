@@ -66,6 +66,38 @@ const msg = match(country, tier, loggedIn)(
 )
 ```
 
+### Match multiple patterns
+
+We can pattern match an input value against a set of values using `either` and
+`neither`.
+
+We can use `either` to get a match when _any_ of the values we pass it match the
+input value.
+
+```js
+import { match, when, either, _ } from 'primitive-match'
+
+const number = getNumber()
+
+const result = match(number)(
+    when([either(1, 2, 'three')], 'Found 1, 2, or "three"!')
+)
+```
+
+Similarly, we can use `neither` to get a match when _none_ of the values
+we pass it match the input value.
+
+```js
+import { match, when, neither, _ } from 'primitive-match'
+
+const character = getCharacter()
+
+// prettier-ignore
+const result = match(character)(
+    when([neither('A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u')], `${character} is not a vowel!`)
+)
+```
+
 ## API
 
 #### `match(...values: any[])`
@@ -88,34 +120,11 @@ Accepts any number of JavaScript primitives of any type. Can be passed as an
 argument to the `pattern` array of `when`. There will be a match if any of the
 values passed to `either` matches its corresponding `match` value.
 
-```js
-import { match, when, either, _ } from 'primitive-match'
-
-const number = getNumber()
-
-const result = match(number)(
-    when([either(1, 2, 'three')], 'Found 1, 2, or "three"!')
-)
-```
-
 #### `neither(...values: any[])`
 
 Accepts any number of JavaScript primitives of any type. Can be passed as an
 argument to the `pattern` array of `when`. There will be a match if none of the
 values passed to it match their corresponding `match` value.
-
-```js
-import { match, when, neither, _ } from 'primitive-match'
-
-const character = getCharacter()
-
-const result = match(character)(
-    when(
-        [neither('A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u')],
-        `${character} is not a vowel!`
-    )
-)
-```
 
 #### `_`
 
