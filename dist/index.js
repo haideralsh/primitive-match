@@ -1,12 +1,32 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._ = exports.when = exports.match = void 0;
+exports._ = exports.either = exports.neither = exports.when = exports.match = void 0;
 /**
  * A constant that serves as the value for wildcard matching. This constant is
  * not exported, it serves as the only source of the wildcard value. Other
  * constants point to its value are exported. @see _
  */
 var WILDCARD_VALUE = '__primitive__match__wildcard__value__';
+var operation = function (operator, elements) { return ({
+    operator: operator,
+    elements: elements,
+}); };
+var either = function () {
+    var elements = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        elements[_i] = arguments[_i];
+    }
+    return operation('either', elements);
+};
+exports.either = either;
+var neither = function () {
+    var elements = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        elements[_i] = arguments[_i];
+    }
+    return operation('neither', elements);
+};
+exports.neither = neither;
 /**
  * `match` is a higher order function that takes any number of values of any type
  * and returns a function that accepts any number of functions that have a
@@ -44,13 +64,34 @@ exports.match = match;
  * or if any of the values do not match their corresponding pattern value.
  */
 var when = function (pattern, result) { return function (values) {
+    var _a;
     if (pattern.length != values.length)
         return { matches: false };
-    for (var i = 0; i < pattern.length; ++i) {
+    var _loop_1 = function (i) {
         if (pattern[i] === WILDCARD_VALUE)
-            continue;
+            return "continue";
+        if ((_a = pattern[i]) === null || _a === void 0 ? void 0 : _a.operator) {
+            var _a = pattern[i], operator = _a.operator, elements = _a.elements;
+            switch (operator) {
+                case 'either':
+                    if (elements.some(function (elem) { return elem === values[i]; }))
+                        return "continue";
+                    else
+                        return { value: { matches: false } };
+                case 'neither':
+                    if (elements.every(function (elem) { return elem !== values[i]; }))
+                        return "continue";
+                    else
+                        return { value: { matches: false } };
+            }
+        }
         if (pattern[i] !== values[i])
-            return { matches: false };
+            return { value: { matches: false } };
+    };
+    for (var i = 0; i < pattern.length; ++i) {
+        var state_1 = _loop_1(i);
+        if (typeof state_1 === "object")
+            return state_1.value;
     }
     return { matches: true, result: result };
 }; };
