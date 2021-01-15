@@ -1,7 +1,7 @@
 {
     "name": "primitive-match",
     "version": "1.1.0",
-    "description": "A pattern matching library for JavaScript with a simple API",
+    "description": "A zero-dependency pattern matching library for JavaScript with a simple API",
     "files": [
         "dist"
     ],
@@ -20,7 +20,7 @@
         "matching",
         "functional"
     ],
-    "author": "halshamma",
+    "author": "Haider Alshamma",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/haideralsh/pattern-matching/issues"
