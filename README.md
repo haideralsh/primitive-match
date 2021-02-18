@@ -80,7 +80,7 @@ import { match, when, either, _ } from 'primitive-match'
 const number = getNumber()
 
 const result = match(number)(
-    when([either(1, 2, 'three')], `${number} 1, 2, or "three"!`)
+    when([either(1, 2, 'three')], 'Found 1, 2, or "three"!')
 )
 ```
 
