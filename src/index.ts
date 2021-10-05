@@ -2,7 +2,7 @@
  * A symbol that serves as the value for wildcard matching. It is exported as _
  * and used as the wild card matching operator.
  */
-const WILDCARD_VALUE = Symbol('primitive-match-wildcard')
+const WILDCARD_VALUE: unique symbol = Symbol('primitive-match-wildcard')
 
 type Operator = 'either' | 'neither'
 
