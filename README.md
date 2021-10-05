@@ -128,8 +128,7 @@ values passed to it match their corresponding `match` value.
 
 #### `_`
 
-A string with the value of `__primitive__match__wildcard__value__` that serves
-as the wild card matching operator.
+A unique symbol that serves as the wild card matching operator.
 
 If `_` conflicts with another library import such as `lodash` or `underscore`,
 then you can alias it when importing it:
