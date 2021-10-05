@@ -1,9 +1,8 @@
 /**
- * A constant that serves as the value for wildcard matching. This constant is
- * not exported, it serves as the only source of the wildcard value. Other
- * constants point to its value are exported. @see _
+ * A symbol that serves as the value for wildcard matching. It is exported as _
+ * and used as the wild card matching operator.
  */
-const WILDCARD_VALUE = '__primitive__match__wildcard__value__'
+const WILDCARD_VALUE = Symbol('primitive-match-wildcard')
 
 type Operator = 'either' | 'neither'
 
@@ -89,10 +88,4 @@ const when = (pattern: ReadonlyArray<any>, result: any): Function => (
     return { matches: true, result }
 }
 
-/**
- * The exported alias to {@link WILDCARD_VALUE}. It serves as the wild card
- * matching operator.
- */
-const _ = WILDCARD_VALUE
-
-export { match, when, neither, either, _ }
+export { match, when, neither, either, WILDCARD_VALUE as _ }
