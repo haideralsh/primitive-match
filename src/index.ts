@@ -12,7 +12,7 @@ type Operation = {
 }
 
 const operation = (
-    operator: Operation['operator'],
+    operator: Operator,
     elements: ReadonlyArray<any>
 ): Operation => ({
     operator,
